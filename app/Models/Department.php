@@ -25,4 +25,9 @@ class Department extends Model
     {
         return $this->throughDesignations()->hasEmployees();
     }
+
+    public function scopeInCompany($query)
+    {
+        return $query->where('company_id', session('company_id'));
+    }
 }
