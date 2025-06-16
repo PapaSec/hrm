@@ -44,8 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         Route::prefix('payrolls')->name('payrolls.')->group(function () {
             Route::get('/', Admin\Payrolls\Index::class)->name('index');
-            Route::get('/create', Admin\Payrolls\Create::class)->name('create');
-            Route::get('/{id}/edit', Admin\Payrolls\Show::class)->name('show');
+            Route::get('/{id}/show', Admin\Payrolls\Show::class)->name('show');
         });
     });
 });
