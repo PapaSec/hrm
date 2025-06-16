@@ -22,7 +22,7 @@ class Index extends Component
         return view(
             'livewire.admin.departments.index',
             [
-                'departments' => Department::inCompany()->paginate(10)
+                'departments' => Department::inCompany()->paginate(5)
             ]
         );
     }

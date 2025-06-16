@@ -12,7 +12,7 @@ class Edit extends Component
     public function rules()
     {
         return [
-            'department' => 'required|string|max:255',
+            'department.name' => 'required|string|max:255',
         ];
     }
 
