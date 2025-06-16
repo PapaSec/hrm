@@ -18,7 +18,7 @@ class Index extends Component
             Storage::disk('public')->delete($company->logo);
         }
         $company->delete();
-        session()->flash('message', 'Company deleted succesfully.');
+        session()->flash('success', 'Company deleted succesfully.');
     }
     public function render()
     {

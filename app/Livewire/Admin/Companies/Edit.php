@@ -37,7 +37,7 @@ class Edit extends Component
         }
 
         $this->company->save();
-        session()->flash('success', 'Company created successfully.');
+        session()->flash('success', 'Company edited successfully.');
         return $this->redirectIntended(route('companies.index'));
     }
     public function render()
