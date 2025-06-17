@@ -35,7 +35,7 @@ class Edit extends Component
         $this->validate();
         $this->employee->save();
         session()->flash('success', 'Employee edited successfully.');
-        return $this->redirectIntended('employees.index');
+        return $this->redirectIntended(route('employees.index'));
     }
     public function render()
     {

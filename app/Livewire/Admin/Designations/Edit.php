@@ -28,7 +28,7 @@ class Edit extends Component
         $this->validate();
         $this->designation->save();
         session()->flash('success', 'Designation edited successfully.');
-        return $this->redirectIntended('designations.index');
+        return $this->redirectIntended(route('designations.index'));
     }
     public function render()
     {
