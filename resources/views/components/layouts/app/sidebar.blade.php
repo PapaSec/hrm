@@ -27,7 +27,7 @@
                     @click="open = !open">
                     <span class="flex items-center justify-between w-full">
                         <span class="flex items-center">
-                            <flux:icon name="building-office" class="mr-2" />
+                            <flux:icon name="rectangle-group" class="mr-2" />
                             {{ __('Companies') }}
                         </span>
                         <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -182,17 +182,14 @@
                 </div>
             </flux:navlist.group>
 
-            <!-- Payments -->
-
-
             <!-- Payroll -->
             <flux:navlist.group class="grid"
-                x-data="{ open: {{ request()->routeIs('payroll.index') ? 'true' : 'false' }} }">
-                <flux:navlist.item as="button" :current="request()->routeIs('payroll.index')" @click="open = !open">
+                x-data="{ open: {{ request()->routeIs('payrolls.index') ? 'true' : 'false' }} }">
+                <flux:navlist.item as="button" :current="request()->routeIs('payrolls.index')" @click="open = !open">
                     <span class="flex items-center justify-between w-full">
                         <span class="flex items-center">
                             <flux:icon name="calculator" class="mr-2" />
-                            {{ __('Payroll') }}
+                            {{ __('Accounting') }}
                         </span>
                         <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
@@ -205,15 +202,31 @@
                     </span>
                 </flux:navlist.item>
                 <div x-show="open" x-transition class="ml-6 space-y-1">
-                    <flux:navlist.item icon="eye" :href="route('payroll.index')" class="hover:bg-transparent"
+                    <flux:navlist.item icon="eye" :href="route('payrolls.index')" class="hover:bg-transparent"
                         :class="request()->routeIs('payroll.index') ? 'text-blue-600' : ''" wire:navigate>
                         {{ __('Show Payroll') }}
                     </flux:navlist.item>
+                    <flux:navlist.item icon="credit-card" :href="route('payrolls.index')" class="hover:bg-transparent"
+                        :class="request()->routeIs('payments.index') ? 'text-blue-600' : ''" wire:navigate>
+                        {{ __('Payroll Payments') }}
+                    </flux:navlist.item>
                 </div>
             </flux:navlist.group>
+
+            <p class="text-red-500">{{ session('message') }}</p>
         </flux:navlist>
 
         <flux:spacer />
+
+        <flux:dropdown>
+            <flux:profile :name="App\Models\Company::find(session('company_id'))->name??'Select Company'"
+                :initials="App\Models\Company::find(session('company_id'))->initials??'N/A'"
+                icon-trailing="chevrons-up-down">
+            </flux:profile>
+            <flux:menu>
+
+            </flux:menu>
+        </flux:dropdown>
 
         <flux:navlist variant="outline">
             <flux:navlist.item icon="folder-git-2" href="https://github.com/PapaSec/hrm" target="_blank">
