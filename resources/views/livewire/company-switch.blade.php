@@ -18,5 +18,5 @@ new class extends Component {
 }; ?>
 
 <div>
-    //
+    <flux:menu.item wire:click="selectCompany({{ $company->id }})">{{ $company->name }}</flux:menu.item>
 </div>
