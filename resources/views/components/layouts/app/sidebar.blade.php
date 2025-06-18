@@ -277,10 +277,12 @@
         <flux:dropdown>
             <flux:profile :name="App\Models\Company::find(session('company_id'))->name??'Select Company'"
                 :initials="App\Models\Company::find(session('company_id'))->initials??'N/A'"
-                icon-trailing="chevrons-up-down">
-            </flux:profile>
+                icon-trailing="chevrons-up-down" />
             <flux:menu>
-
+                @foreach (auth()->user()->companies as $company)
+                <flux:menu.radio.group>
+                    @livewire('company-switch', ['company'=>company], key($company->id))
+                </flux:menu.radio.group>
             </flux:menu>
         </flux:dropdown>
 
