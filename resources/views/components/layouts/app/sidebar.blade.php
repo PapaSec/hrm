@@ -5,9 +5,10 @@
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-white dark:bg-zinc-800">
+<body class="min-h-screen bg-white dark:bg-slate-800">
     <!-- Top Navbar -->
-    <flux:header class="sticky top-0 z-50 h-20 border-b border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
+    <flux:header
+        class="sticky top-0 z-50 h-18 border-b border-zinc-200 bg-gray-800 dark:border-gray-700 dark:bg-gray-800">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
         <!-- Logo -->
@@ -61,7 +62,7 @@
     </flux:header>
 
     <!-- Sidebar Navigation -->
-    <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900">
+    <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-zinc-50 dark:border-slate-900 dark:bg-slate-900">
         <!-- Dashboard -->
         <flux:navlist variant="outline">
             <flux:navlist.group :heading="__('NAVIGATION')" class="grid font-bold">
