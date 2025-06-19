@@ -48,6 +48,17 @@
     --color-secondary-800: #166534;
     --color-secondary-900: #14532d;
 
+    --color-nos-50: #e6eaf2;
+    --color-nos-100: #ccd5e5;
+    --color-nos-200: #99aacb;
+    --color-nos-300: #6680b1;
+    --color-nos-400: #0c224d;
+    --color-nos-500: #0a1d44;
+    --color-nos-600: #08183b;
+    --color-nos-700: #061232;
+    --color-nos-800: #040d29;
+    --color-nos-900: #020714;
+
     /* Accent Color (e.g., Orange) - Replace with Greeva's accent */
     --color-accent: #f97316;
     --color-accent-content: #f97316;
