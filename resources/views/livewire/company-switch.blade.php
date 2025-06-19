@@ -10,10 +10,10 @@ new class extends Component {
         $this->company = $company;
     }
 
-    public function selectCompany()
+    public function selectCompany($id)
     {
         session(['company_id' => $this->company->id]);
-        return $this->redirectIntended(URL::previous());
+        return $this->redirectIntended(URL::previous(), true);
     }
 }; ?>
 

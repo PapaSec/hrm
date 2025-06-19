@@ -5,10 +5,10 @@
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-white dark:bg-slate-800">
+<body class="min-h-screen bg-white dark:bg-gray-900">
     <!-- Top Navbar -->
     <flux:header
-        class="sticky top-0 z-50 h-18 border-b border-zinc-200 bg-gray-800 dark:border-gray-700 dark:bg-gray-800">
+        class="sticky top-0 z-50 h-18 border-b border-zinc-200 bg-gray-800 dark:border-gray-800 dark:bg-gray-800">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" inset="left" />
 
         <!-- Logo -->
