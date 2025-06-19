@@ -39,8 +39,18 @@
                                                     class="w-10 h-10 rounded-full mr-4">
                                                 <span>{{ $company->name }}</span>
                                             </td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>
+                                                {{ $company->departments->flatMap->designations->flatMap->employees->count() }}
+                                            </td>
+                                            <td>
+                                                <div>
+                                                    <flux:button variant="filled" icon="pencil"
+                                                        :href="route('companies.edit', $company->id)" />
+                                                    <flux:button variant="danger" icon="trash"
+                                                        :href="route('companies.edit', $company->id)"
+                                                        wire:click="delete({{ $company->id}})" />
+                                                </div>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
