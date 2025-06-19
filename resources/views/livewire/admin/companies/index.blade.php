@@ -16,19 +16,34 @@
                                 <thead class="bg-nos-200 dark:bg-nos-900">
                                     <tr>
                                         <th>
-                                            Name
+                                            #
                                         </th>
                                         <th>
-                                            Email
+                                            Comany Name
                                         </th>
                                         <th>
-                                            Phone
+                                            Number of Employees
                                         </th>
                                         <th>
                                             Actions
                                         </th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($companies as $company)
+                                        <tr
+                                            class="text-center bg-nos-100 hover:bg-nos-50 dark:hover:bg-nos-700 dark:bg-nos-800">
+                                            <td>{{ $company->id }}</td>
+                                            <td class="text-zinc-900 dark:text-white flex justify-left items-center">
+                                                <img src="{{ $company->logo_url }}" alt=""
+                                                    class="w-10 h-10 rounded-full mr-4">
+                                                <span>{{ $company->name }}</span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

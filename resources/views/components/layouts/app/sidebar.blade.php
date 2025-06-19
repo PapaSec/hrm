@@ -5,7 +5,7 @@
     @include('partials.head')
 </head>
 
-<body class="min-h-screen bg-white dark:bg-gray-900">
+<body class="min-h-screen bg-white dark:bg-nos-800">
     <!-- Top Navbar -->
     <flux:header
         class="sticky top-0 z-50 h-18 border-b border-zinc-200 bg-gray-800 dark:border-gray-800 dark:bg-gray-800">
