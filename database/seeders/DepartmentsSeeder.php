@@ -30,52 +30,53 @@ class DepartmentsSeeder extends Seeder
                     'name'        => 'Marketing',
                 ],
             ]);
-        }
 
-        foreach ($departments as $department) {
-            switch ($department->name) {
-                case 'Engineering':
-                    $designations = [
-                        'Software Engineer',
-                        'Senior Software Engineer',
-                        'Engineering Manager',
-                        'Director of Engineering',
-                    ];
-                    break;
-                case 'Human Resources':
-                    $designations = [
-                        'HR Assistant',
-                        'HR Manager',
-                        'Recruiter',
-                        'HR Director',
-                    ];
-                    break;
-                case 'Finance':
-                    $designations = [
-                        'Accountant',
-                        'Financial Analyst',
-                        'Finance Manager',
-                        'Chief Financial Officer',
-                    ];
-                    break;
-                case 'Marketing':
-                    $designations = [
-                        'Marketing Coordinator',
-                        'Marketing Manager',
-                        'Content Strategist',
-                        'Director of Marketing',
-                    ];
-                    break;
 
-                default:
-                    $designations = [];
-                    break;
-            }
+            foreach ($departments as $department) {
+                switch ($department->name) {
+                    case 'Engineering':
+                        $designations = [
+                            'Software Engineer',
+                            'Senior Software Engineer',
+                            'Engineering Manager',
+                            'Director of Engineering',
+                        ];
+                        break;
+                    case 'Human Resources':
+                        $designations = [
+                            'HR Assistant',
+                            'HR Manager',
+                            'Recruiter',
+                            'HR Director',
+                        ];
+                        break;
+                    case 'Finance':
+                        $designations = [
+                            'Accountant',
+                            'Financial Analyst',
+                            'Finance Manager',
+                            'Chief Financial Officer',
+                        ];
+                        break;
+                    case 'Marketing':
+                        $designations = [
+                            'Marketing Coordinator',
+                            'Marketing Manager',
+                            'Content Strategist',
+                            'Director of Marketing',
+                        ];
+                        break;
 
-            foreach ($designations as $designation) {
-                $department->designations()->create([
-                    'name' => $designation,
-                ]);
+                    default:
+                        $designations = [];
+                        break;
+                }
+
+                foreach ($designations as $designation) {
+                    $department->designations()->create([
+                        'name' => $designation,
+                    ]);
+                }
             }
         }
     }
