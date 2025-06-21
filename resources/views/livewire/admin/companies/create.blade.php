@@ -12,5 +12,7 @@
                     :invalid="$errors->has('company.email')" type="email" />
                 <flux:input label="Company Website" wire:model.live="company.website"
                     :invalid="$errors->has('company.website')" type="url" />
+                <flux:input label="Company Logo" wire:model.live="logo" :invalid="$errors->has('logo')" type="file" />
+                <flux:button variant="primary" type="submit">Save</flux:button>
             </form>
         </div>
