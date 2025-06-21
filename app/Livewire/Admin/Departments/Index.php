@@ -14,7 +14,7 @@ class Index extends Component
 
     public function delete($id)
     {
-        $department = Department::find($id);
+        Department::find($id);
         session()->flash('success', 'Department deleted succesfully.');
     }
     public function render()
