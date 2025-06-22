@@ -286,6 +286,9 @@
                 @endforeach
             </flux:menu>
         </flux:dropdown>
+        @if(session()->has('errorMsg'))
+            <x-auth-session-status class="text-cent text-red-500" :status="session('errorMsg')"></x-auth-session-status>
+        @endif
 
     </flux:sidebar>
 

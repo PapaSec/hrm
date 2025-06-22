@@ -13,6 +13,9 @@
                 <flux:input label="Company Website" wire:model.live="company.website"
                     :invalid="$errors->has('company.website')" type="url" />
                 <flux:input label="Company Logo" wire:model.live="logo" :invalid="$errors->has('logo')" type="file" />
-                <flux:button variant="primary" type="submit">Save</flux:button>
+                <button type="submit"
+                    class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition-all transform hover:scale-[1.02] active:scale-[0.98]">
+                    Save Changes
+                </button>
             </form>
         </div>
