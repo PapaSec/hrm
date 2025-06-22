@@ -26,7 +26,7 @@ class Edit extends Component
         $this->validate();
         $this->department->save();
         session()->flash('success', 'Department edited successfully.');
-        return $this->redirectIntended(route('departments.index'));
+        return $this->redirectIntended(route('departments.index'), true);
     }
     public function render()
     {

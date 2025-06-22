@@ -27,7 +27,7 @@ class Create extends Component
         $this->department->company_id = session('company_id');
         $this->department->save();
         session()->flash('success', 'Department created successfully.');
-        return $this->redirectIntended(route('departments.index'));
+        return $this->redirectIntended(route('departments.index'), true);
     }
     public function render()
     {
