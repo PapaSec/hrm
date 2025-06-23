@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Designations;
 
+use App\Models\Department;
 use App\Models\Designation;
 use Livewire\Component;
 
@@ -13,7 +14,7 @@ class Edit extends Component
     public function rules()
     {
         return [
-            'designation' => 'required|string|max:255',
+            'designation.name' => 'required|string|max:255',
             'designation.department_id' => 'required|exists:departments,id',
         ];
     }
@@ -32,6 +33,8 @@ class Edit extends Component
     }
     public function render()
     {
-        return view('livewire.admin.designations.edit');
+        return view('livewire.admin.designations.edit', [
+            'departments' => Department::inCompany()->get()
+        ]);
     }
 }

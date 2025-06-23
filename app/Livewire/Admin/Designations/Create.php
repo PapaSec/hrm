@@ -13,7 +13,7 @@ class Create extends Component
     public function rules()
     {
         return [
-            'designation.name' => 'required|string|max:255|unique:designations',
+            'designation.name' => 'required|string|max:255',
             'designation.department_id' => 'required|exists:departments,id',
         ];
     }

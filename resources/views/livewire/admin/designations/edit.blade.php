@@ -6,7 +6,7 @@
         <div>
             <form wire:submit="save" class="my-6 w-full space-y-6">
                 <flux:select label="Department" wire:model.live="designation.department_id"
-                    :invalid="errors->has('designation.department_id')">
+                    :invalid="$errors->has('designation.department_id')">
                     <option selected>Select Department</option>
                     @foreach ($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
