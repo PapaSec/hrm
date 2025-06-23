@@ -1,8 +1,7 @@
 <div class="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 p-6">
     <div class="relative mb-6 w-full">
         <flux:heading size="xl">Designations</flux:heading>
-        <flux:subheading size="lg" class="mb-6">List of Designations for {{ getCompany()->name }}
-        </flux:subheading>
+        <flux:subheading size="lg" class="mb-6">List of Designations for {{ getCompany()->name }}</flux:subheading>
     </div>
 
     <div>
@@ -29,10 +28,10 @@
                                             <span>{{ $designation->name }}</span>
                                         </td>
                                         <td>
-                                            {{ $designation->employees->count() }}
+                                            {{ $designation->department->name }}
                                         </td>
                                         <td>
-                                            {{ $designation->department->name }}
+                                            {{ $designation->employees->count() }}
                                         </td>
                                         <td>
                                             <div>
@@ -40,7 +39,7 @@
                                                     :href="route('designations.edit', $designation->id)" />
                                                 <flux:button variant="danger" icon="trash"
                                                     :href="route('designations.edit', $designation->id)"
-                                                    wire:click="delete({{ $designation->id}})" />
+                                                    wire:click="delete({{ $designation->id }})" />
                                             </div>
                                         </td>
                                     </tr>

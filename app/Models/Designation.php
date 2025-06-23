@@ -8,7 +8,7 @@ class Designation extends Model
 {
     protected $fillable = [
         'name',
-        'company_id',
+        'department_id',
     ];
 
     public function department()
