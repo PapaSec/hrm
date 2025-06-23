@@ -24,7 +24,7 @@
                                         class="text-center bg-nos-100 hover:bg-nos-50 dark:hover:bg-nos-700 dark:bg-nos-800">
                                         <td>{{ $key + 1 }}</td>
                                         <td class="text-zinc-900 dark:text-white flex flex-col justify-left items-center">
-                                            <span>{{ $employee->name }}</span>
+                                            <span class="font-bold text-lg">{{ $employee->name }}</span>
                                             <span>{{ $employee->email }}</span>
                                         </td>
                                         <td>
