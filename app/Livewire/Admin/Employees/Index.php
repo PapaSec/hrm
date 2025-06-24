@@ -16,7 +16,6 @@ class Index extends Component
         session()->flash('success', 'Employee deleted successfully.');
     }
 
-
     public function render()
     {
         return view(

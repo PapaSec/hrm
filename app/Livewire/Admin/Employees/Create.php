@@ -11,8 +11,7 @@ class Create extends Component
 {
     public $employee;
     public $department_id;
-
-    public function rules()
+    protected function rules()
     {
         return [
             'employee.name' => 'required|string|max:255',
@@ -28,6 +27,7 @@ class Create extends Component
         $this->employee = new Employee();
     }
 
+
     public function save()
     {
         $this->validate();
@@ -38,7 +38,9 @@ class Create extends Component
 
     public function render()
     {
-        $designations = Designation::inCompany()->where('department_id', $this->department_id)->get();
+
+
+        $designations = Designation::where('department_id', $this->department_id)->get();
         return view('livewire.admin.employees.create', [
             'designations' => $designations,
             'departments' => Department::inCompany()->get(),

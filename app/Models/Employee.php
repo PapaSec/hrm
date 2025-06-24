@@ -26,7 +26,7 @@ class Employee extends Model
 
     public function scopeInCompany($query)
     {
-        return $query->whereHas('designation.department', function ($q) {
+        return $query->whereHas('designation', function ($q) {
             $q->inCompany();
         });
     }
