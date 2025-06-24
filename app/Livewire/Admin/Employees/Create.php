@@ -40,7 +40,7 @@ class Create extends Component
     {
 
 
-        $designations = Designation::where('department_id', $this->department_id)->get();
+        $designations = Designation::inCompany()->where('department_id', $this->department_id)->get();
         return view('livewire.admin.employees.create', [
             'designations' => $designations,
             'departments' => Department::inCompany()->get(),
