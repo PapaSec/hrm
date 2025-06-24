@@ -10,13 +10,13 @@ use Livewire\Component;
 class Create extends Component
 {
     public $employee;
-    public $department_id = ''; // Initialize as empty string
+    public $department_id;
 
     public function rules()
     {
         return [
             'employee.name' => 'required|string|max:255',
-            'employee.email' => 'required|email|max:255|unique:employees,email',
+            'employee.email' => 'required|email|max:255',
             'employee.phone' => 'required|string|max:255',
             'employee.address' => 'required|string|max:255',
             'employee.designation_id' => 'required|exists:designations,id',
@@ -33,18 +33,12 @@ class Create extends Component
         $this->validate();
         $this->employee->save();
         session()->flash('success', 'Employee created successfully.');
-        return redirect()->route('employees.index'); // Use standard redirect
+        return $this->redirectIntended(route('employees.index'));
     }
-
 
     public function render()
     {
-        $designations = Designation::query()
-            ->when($this->department_id, function ($query) {
-                $query->where('department_id', $this->department_id);
-            })
-            ->get();
-
+        $designations = Designation::inCompany()->where('department_id', $this->department_id)->get();
         return view('livewire.admin.employees.create', [
             'designations' => $designations,
             'departments' => Department::inCompany()->get(),
