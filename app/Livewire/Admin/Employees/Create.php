@@ -33,13 +33,10 @@ class Create extends Component
         $this->validate();
         $this->employee->save();
         session()->flash('success', 'Employee created successfully.');
-        return $this->redirectIntended(route('employees.index'));
+        return $this->redirectIntended(route('employees.index'), true);
     }
-
     public function render()
     {
-
-
         $designations = Designation::inCompany()->where('department_id', $this->department_id)->get();
         return view('livewire.admin.employees.create', [
             'designations' => $designations,

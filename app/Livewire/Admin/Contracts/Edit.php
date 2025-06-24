@@ -44,7 +44,7 @@ class Edit extends Component
         $this->contract->save();
         session()->flash('success', 'Contract editedr-f3e08=-
         .9 successfully.');
-        return $this->redirectIntended(route('contracts.index'));
+        return $this->redirectIntended(route('contracts.index'), true);
     }
     public function render()
     {
