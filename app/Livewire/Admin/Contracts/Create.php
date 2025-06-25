@@ -19,6 +19,7 @@ class Create extends Component
         return [
             'contract.designation_id' => 'required',
             'contract.employee_id' => 'required',
+            'contract.department_id' => 'required',
             'contract.start_date' => 'required|date',
             'contract.end_date' => 'required|date|after:contract.start_date',
             'contract.rate_type' => 'required',
@@ -40,7 +41,8 @@ class Create extends Component
     public function save()
     {
         $this->validate();
-        if ($this->contract->employee->getActiveContract($this->contract->start_date, $this->contract->end_date)) {
+        $activeContract = $this->contract->employee->getActiveContract($this->contract->start_date, $this->contract->end_date);
+        if ($activeContract && $activeContract->id != $this->contract->id) {
             throw ValidationException::withMessages(['contract.start_date' => 'This employee already has an active contract during this period.']);
         }
         $this->contract->save();
@@ -51,7 +53,11 @@ class Create extends Component
     {
         $employees = Employee::inCompany()->searchByName($this->search)->get();
         $departments = Department::inCompany()->get();
-        $designations = $this->department_id ? Department::find($this->department_id)->designations : collect();
+
+        $designations = $this->contract->department_id
+            ? Department::find($this->contract->department_id)?->designations ?? collect()
+            : collect();
+
         return view('livewire.admin.contracts.create', [
             'employees' => $employees,
             'departments' => $departments,

@@ -30,6 +30,12 @@ class Edit extends Component
         $this->department_id = $this->employee->designation->department_id;
     }
 
+    public function updatedDepartmentId($value)
+    {
+        // Reset designation when department changes
+        $this->employee->designation_id = null;
+    }
+
     public function save()
     {
         $this->validate();
@@ -39,7 +45,10 @@ class Edit extends Component
     }
     public function render()
     {
-        $designations = Designation::inCompany()->where('department_id', $this->department_id)->get();
+        $designations = $this->department_id
+            ? Designation::inCompany()->where('department_id', $this->department_id)->get()
+            : collect();
+
         return view('livewire.admin.employees.edit', [
             'designations' => $designations,
             'departments' => Department::inCompany()->get(),

@@ -24,7 +24,8 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <flux:select name="department" label="Department" wire:model="deapartment_id">
+                <flux:select name="department" label="Department" wire:model.live="contract.department_id"
+                    :invalid="$errors->has('contract.department_id')">
                     <option value="">Select Department</option>
                     @foreach ($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -32,7 +33,7 @@
                 </flux:select>
             </div>
             <div>
-                <flux:select name="designation" label="Designation" wire:model="contract.designation_id"
+                <flux:select name="designation" label="Designation" wire:model.live="contract.designation_id"
                     :invalid="$errors->has('contract.designation_id')">
                     <option value="">Select Designation</option>
                     @foreach ($designations as $designation)
@@ -53,11 +54,11 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <flux:input label="Rate" wire:model="contract.rate" type="number" placeholder="e.g. 5000"
+                <flux:input label="Rate" wire:model.live="contract.rate" type="number" placeholder="e.g. 5000"
                     :invalid="$errors->has('contract.rate')" />
             </div>
             <div>
-                <flux:select name="rate_type" label="Rate Type" wire:model="contract.rate_type"
+                <flux:select name="rate_type" label="Rate Type" wire:model.live="contract.rate_type"
                     :invalid="$errors->has('contract.rate_type')">
                     <option value="">Select Rate Type</option>
                     <option value="daily">Daily</option>

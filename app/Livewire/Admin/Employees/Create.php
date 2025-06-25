@@ -11,6 +11,7 @@ class Create extends Component
 {
     public $employee;
     public $department_id;
+
     protected function rules()
     {
         return [
@@ -27,20 +28,34 @@ class Create extends Component
         $this->employee = new Employee();
     }
 
+    public function updatedDepartmentId($value)
+    {
+        // Reset designation when department changes
+        $this->employee->designation_id = null;
+    }
 
     public function save()
     {
         $this->validate();
+
         $this->employee->save();
+
         session()->flash('success', 'Employee created successfully.');
+
         return $this->redirectIntended(route('employees.index'), true);
     }
+
     public function render()
     {
-        $designations = Designation::inCompany()->where('department_id', $this->department_id)->get();
+        $departments = Department::inCompany()->get();
+
+        $designations = $this->department_id
+            ? Designation::inCompany()->where('department_id', $this->department_id)->get()
+            : collect();
+
         return view('livewire.admin.employees.create', [
+            'departments' => $departments,
             'designations' => $designations,
-            'departments' => Department::inCompany()->get(),
         ]);
     }
 }

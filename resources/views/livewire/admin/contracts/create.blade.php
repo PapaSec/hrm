@@ -6,7 +6,9 @@
         <flux:separator />
     </div>
     <form wire:submit="save" class="my-6 w-full space-y-6">
-        <flux:input type="search" name="search" wire:model.live="search" placeholder="Search for employee" />
+        <flux:input type="search" name="search" wire:model.live="search" placeholder="Search for employee"
+            :invalid="$errors->has('contract.employee_id')" />
+        <flux:error name="contract.employee_id" />
         @if ($search != '' && $employees->count() > 0)
             <div
                 class="bg-white dark:bg-zinc-900 w-full border border-zinc-200 dark:border-zinc-800 rounded-md shadow-md -mt-4">
@@ -23,20 +25,24 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <flux:select name="department" label="Department" wire:model="department_id">
+                <flux:select name="department" label="Department" wire:model.live="contract.department_id"
+                    :invalid="$errors->has('contract.department_id')">
                     <option value="">Select Department</option>
                     @foreach ($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
                     @endforeach
                 </flux:select>
+                <flux:error name="contract.department_id" />
             </div>
             <div>
-                <flux:select name="designation" label="Designation" wire:model.live="contract.designation_id">
+                <flux:select name="designation" label="Designation" wire:model.live="contract.designation_id"
+                    :invalid="$errors->has('contract.designation_id')">
                     <option value="">Select Designation</option>
                     @foreach ($designations as $designation)
                         <option value="{{ $designation->id }}">{{ $designation->name }}</option>
                     @endforeach
                 </flux:select>
+                <flux:error name="contract.designation_id" />
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -51,7 +57,7 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <flux:input label="Rate" wire:model="contract.rate" type="number" placeholder="e.g. 5000"
+                <flux:input label="Rate" wire:model.live="contract.rate" type="number" placeholder="e.g. 5000"
                     :invalid="$errors->has('contract.rate')" />
             </div>
             <div>
@@ -61,6 +67,7 @@
                     <option value="daily">Daily</option>
                     <option value="monthly">Monthly</option>
                 </flux:select>
+                <flux:error name="contract.rate_type" />
             </div>
         </div>
         <div class="flex justify-start">
