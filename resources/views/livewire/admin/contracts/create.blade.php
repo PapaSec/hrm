@@ -23,7 +23,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <flux:select name="department" label="Department" wire:model="deapartment_id">
+                <flux:select name="department" label="Department" wire:model.live="deapartment_id">
                     <option value="">Select Department</option>
                     @foreach ($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -31,7 +31,7 @@
                 </flux:select>
             </div>
             <div>
-                <flux:select name="designation" label="Designation" wire:model="contract.designation_id">
+                <flux:select name="designation" label="Designation" wire:model.live="contract.designation_id">
                     <option value="">Select Designation</option>
                     @foreach ($designations as $designation)
                         <option value="{{ $designation->id }}">{{ $designation->name }}</option>
@@ -41,23 +41,21 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <flux:input label="Contract Start Date" wire:model="contract.start_date" type="date" />
+                <flux:input label="Contract Start Date" wire:model.live="contract.start_date" type="date" />
             </div>
             <div>
-                <flux:input label="Contract End Date" wire:model="contract.end_date" type="date" />
+                <flux:input label="Contract End Date" wire:model.live="contract.end_date" type="date" />
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <flux:input label="Rate" wire:model="contract.rate" type="number" placeholder="e.g. 5000" />
+                <flux:input label="Rate" wire:model.live="contract.rate" type="number" placeholder="e.g. 5000" />
             </div>
             <div>
-                <flux:select name="rate_type" label="Rate Type" wire:model="contract.rate_type">
+                <flux:select name="rate_type" label="Rate Type" wire:model.live="contract.rate_type">
                     <option value="">Select Rate Type</option>
-                    <option value="hourly">Hourly</option>
+                    <option value="daily">Daily</option>
                     <option value="monthly">Monthly</option>
-                    <option value="yearly">Yearly</option>
-
                 </flux:select>
             </div>
         </div>
