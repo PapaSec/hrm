@@ -18,7 +18,7 @@ class Create extends Component
     {
         return [
             'contract.designation_id' => 'required',
-            'required.employee_id' => 'required',
+            'contract.employee_id' => 'required',
             'contract.start_date' => 'required|date',
             'contract.end_date' => 'required|date|after:contract.start_date',
             'contract.rate_type' => 'required',

@@ -6,16 +6,15 @@
         <flux:separator />
     </div>
     <form wire:submit="save" class="my-6 w-full space-y-6">
-        <flux:input type="search" name="search" wire:model.live="search" placeholder="Search for employee"
-            :invalid="$errors->has('contract.employee_id')" />
+        <flux:input type="search" name="search" wire:model.live="search" placeholder="Search for employee" />
         @if ($search != '' && $employees->count() > 0)
             <div
                 class="bg-white dark:bg-zinc-900 w-full border border-zinc-200 dark:border-zinc-800 rounded-md shadow-md -mt-4">
                 <ul class="w-full">
                     @foreach ($employees as $employee)
-                        <li wire:click="selectEmployee({{ $employee->id }})"
+                        <li wire:click="selectEmployee({{ $employee['id'] }})"
                             class="cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 p-2">
-                            {{ $employee->name }}
+                            {{ $employee['name'] }}
                         </li>
                     @endforeach
                 </ul>
@@ -24,7 +23,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-                <flux:select name="department" label="Department" wire:model="deapartment_id">
+                <flux:select name="department" label="Department" wire:model="department_id">
                     <option value="">Select Department</option>
                     @foreach ($departments as $department)
                         <option value="{{ $department->id }}">{{ $department->name }}</option>
@@ -32,8 +31,7 @@
                 </flux:select>
             </div>
             <div>
-                <flux:select name="designation" label="Designation" wire:model="contract.designation_id"
-                    :invalid="$errors->has('contract.designation_id')">
+                <flux:select name="designation" label="Designation" wire:model.live="contract.designation_id">
                     <option value="">Select Designation</option>
                     @foreach ($designations as $designation)
                         <option value="{{ $designation->id }}">{{ $designation->name }}</option>

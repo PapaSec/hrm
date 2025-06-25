@@ -7,6 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contract extends Model
 {
+    protected $fillable = [
+        'employee_id',
+        'designation_id',
+        'start_date',
+        'end_date',
+        'rate_type',
+        'rate',
+    ];
+    protected $appends = ['duration'];
+    protected $casts = [
+        'start_date' => 'date',
+        'end_date' => 'date',
+    ];
     public function employee()
     {
         return $this->belongsTo(Employee::class);
