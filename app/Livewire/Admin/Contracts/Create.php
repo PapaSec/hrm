@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Contracts;
 use App\Models\Contract;
 use App\Models\Department;
 use App\Models\Employee;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class Create extends Component
@@ -39,6 +40,9 @@ class Create extends Component
     public function save()
     {
         $this->validate();
+        if ($this->contract->employee->getActiveContract($this->contract->start_date, $this->contract->end_date)) {
+            throw ValidationException::withMessages(['contract.start_date' => 'This employee already has an active contract during this period.']);
+        }
         $this->contract->save();
         session()->flash('success', 'Contract created successfully.');
         return $this->redirectIntended(route('contracts.index'), true);
