@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\NetPayCalculationsService;
 use Illuminate\Database\Eloquent\Model;
 
 class Salary extends Model
@@ -20,5 +21,17 @@ class Salary extends Model
     public function employee()
     {
         return $this->belongsTo(Employee::class);
+    }
+    public function getBreakdownAttribute()
+    {
+        return new NetPayCalculationsService($this->gross_salary);
+    }
+    public function getDeductionsAttribute()
+    {
+        return $this->breakdown->getDeduction();
+    }
+    public function getNetPayAttribute()
+    {
+        return $this->breakdown->getNetPay();
     }
 }

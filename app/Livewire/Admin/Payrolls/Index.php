@@ -22,6 +22,12 @@ class Index extends Component
         ];
     }
 
+    public function viewPayroll($id)
+    {
+        $payroll = Payroll::inCompany()->find($id);
+        $this->redirectIntended(route('payrolls.show', $payroll), true);
+    }
+
     public function genetatePayroll()
     {
         $this->validate();

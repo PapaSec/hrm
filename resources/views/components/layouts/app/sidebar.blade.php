@@ -254,11 +254,11 @@
                 </flux:navlist.item>
                 <div x-show="open" x-transition class="ml-6 space-y-1">
                     <flux:navlist.item icon="eye" :href="route('payrolls.index')" class="hover:bg-transparent"
-                        :class="request()->routeIs('payroll.index') ? 'text-blue-600' : ''" wire:navigate>
+                        :class="request()->routeIs('payroll.show') ? 'text-blue-600' : ''" wire:navigate>
                         {{ __('Show Payroll') }}
                     </flux:navlist.item>
                     <flux:navlist.item icon="credit-card" :href="route('payments.index')" class="hover:bg-transparent"
-                        :class="request()->routeIs('payments.index') ? 'text-blue-600' : ''" wire:navigate>
+                        :class="request()->routeIs('payments.show') ? 'text-blue-600' : ''" wire:navigate>
                         {{ __('Payroll Payments') }}
                     </flux:navlist.item>
                 </div>
