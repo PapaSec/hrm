@@ -16,7 +16,7 @@ class NetPayCalculationsService
     {
         $max = 4320;
 
-        return min($this->gross_salary, $max);
+        return min($this->gross_salary * 0.06, $max);
     }
 
     public function getShifDeduction()
@@ -68,6 +68,6 @@ class NetPayCalculationsService
     }
     public function getNetPay()
     {
-        $this->gross_salary - $this->getDeduction();
+        return $this->gross_salary - $this->getDeduction();
     }
 }
