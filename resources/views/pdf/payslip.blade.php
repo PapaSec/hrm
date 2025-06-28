@@ -216,7 +216,7 @@
     <!-- Header -->
     <div class="header-section">
         <h1>Payslip</h1>
-        <p>Generated on: {{ date('F d, Y') }}</p>
+        <p>Generated on: {{ $salary->payroll->month_string }}</p>
         <div class="mt-4">
             <h2>Company Name</h2>
             <p>123 Business Street, City, Country</p>
@@ -228,11 +228,10 @@
     <div class="employee-details">
         <h3>Employee Information</h3>
         <div class="mt-2">
-            <div><span>Employee Name:</span> John Doe</div>
-            <div><span>Employee ID:</span> EMP12345</div>
-            <div><span>Department:</span> Engineering</div>
-            <div><span>Designation:</span> Software Engineer</div>
-            <div><span>Pay Period:</span> June 2025</div>
+            <div><span>Employee Name:</span>{{ $salary->employee->name }}</div>
+            <div><span>Employee ID:</span>{{ sprintf('%04d', $salary->employee_id) }}</div>
+            <div><span>Department:</span>{{ $salary->employee->department }}</div>
+            <div><span>Designation:</span>{{ $salary->employee->designation->name }}</div>
         </div>
     </div>
 
