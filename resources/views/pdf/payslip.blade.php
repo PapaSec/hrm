@@ -247,8 +247,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Basic Salary</td>
-                    <td>15,000.00</td>
+                    <td>Gross Salary</td>
+                    <td><sup>ZAR</sup>{{ number_format($salary->gross_salary)}}</td>
                 </tr>
                 <tr>
                     <td>Overtime</td>
