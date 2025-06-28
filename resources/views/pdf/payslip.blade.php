@@ -4,266 +4,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Payslip</title>
-    <!-- Tailwind CSS CDN for styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @page {
+            margin: 20mm;
+        }
 
         body {
-            font-family: 'Inter', sans-serif;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        .payslip-container {
-            width: 210mm;
-            height: 297mm;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+            padding: 24px;
+            max-width: 960px;
             margin: 0 auto;
-            padding: 15mm;
         }
 
-        .watermark {
-            position: absolute;
-            opacity: 0.1;
-            font-size: 72px;
-            color: #3b82f6;
-            transform: rotate(-30deg);
-            z-index: -1;
-            pointer-events: none;
+        /* Light Mode Styles */
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #111827;
+            text-align: center;
+            margin-bottom: 8px;
         }
 
-        @page {
-            size: A4;
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #4b5563;
+            text-align: center;
             margin: 0;
         }
 
-        @media print {
-            body {
-                background: white;
-            }
+        .header-section {
+            margin-bottom: 32px;
+            text-align: center;
+        }
 
-            .payslip-container {
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
+        .employee-details {
+            background-color: #f9fafb;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
 
-            .no-print {
-                display: none !important;
-            }
+        .employee-details h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .employee-details div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            font-size: 14px;
+        }
+
+        .employee-details div span {
+            font-weight: 600;
+        }
+
+        .earnings-deductions {
+            background-color: #ffffff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .earnings-deductions h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .table-custom {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 16px;
+        }
+
+        .table-custom th,
+        .table-custom td {
+            border: 1px solid #e5e7eb;
+            padding: 8px;
+            text-align: right;
+        }
+
+        .table-custom th {
+            background-color: #f9fafb;
+            color: #374151;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .table-custom td:first-child {
+            text-align: left;
+        }
+
+        .table-custom tr:last-child td {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .net-pay {
+            background-color: #ecfdf5;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: right;
+        }
+
+        .net-pay h3 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 8px;
+        }
+
+        .net-pay p {
+            font-size: 20px;
+            font-weight: bold;
+            color: #10b981;
+            margin: 0;
+        }
+
+        .signature {
+            margin-top: 40px;
+            text-align: center;
+            font-style: italic;
+            color: #6b7280;
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode body {
+            background-color: #111827;
+            color: #d1d5db;
+        }
+
+        .dark-mode h1 {
+            color: #f9fafb;
+        }
+
+        .dark-mode h2 {
+            color: #e5e7eb;
+        }
+
+        .dark-mode p {
+            color: #9ca3af;
+        }
+
+        .dark-mode .employee-details {
+            background-color: #1f2937;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .employee-details h3 {
+            color: #d1d5db;
+        }
+
+        .dark-mode .earnings-deductions {
+            background-color: #1f2937;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .earnings-deductions h3 {
+            color: #d1d5db;
+        }
+
+        .dark-mode .table-custom th {
+            background-color: #374151;
+            color: #d1d5db;
+        }
+
+        .dark-mode .table-custom td {
+            border-color: #374151;
+        }
+
+        .dark-mode .net-pay {
+            background-color: #164e3a;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .net-pay h3 {
+            color: #d1d5db;
+        }
+
+        .dark-mode .net-pay p {
+            color: #34d399;
+        }
+
+        .dark-mode .signature {
+            color: #9ca3af;
         }
     </style>
 </head>
 
-<body class="bg-gray-100">
-    <div class="flex justify-center no-print my-8">
-        <button onclick="window.print()"
-            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg flex items-center gap-2">
-            <i class="fas fa-print"></i> Print Payslip
-        </button>
-    </div>
-
-    <div class="payslip-container bg-white shadow-lg">
-        <!-- Watermark -->
-        <div class="watermark top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            CONFIDENTIAL
-        </div>
-
-        <!-- Header Section -->
-        <div class="flex justify-between items-start border-b-2 border-blue-600 pb-6 mb-6">
-            <div>
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-building text-blue-600 text-2xl"></i>
-                    </div>
-                    <div>
-                        <h1 class="text-3xl font-bold text-gray-800">PAYSLIP</h1>
-                        <p class="text-gray-600">Salary Payment Advice</p>
-                    </div>
-                </div>
-
-                <div class="text-sm text-gray-600">
-                    <p><span class="font-medium text-gray-800">Pay Period:</span> June 2023</p>
-                    <p><span class="font-medium text-gray-800">Payment Date:</span> 25th June 2023</p>
-                    <p><span class="font-medium text-gray-800">Payslip ID:</span> PS-2023-06-001</p>
-                </div>
-            </div>
-
-            <div class="text-right">
-                <div class="w-24 h-24 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <i class="fas fa-user-tie text-blue-600 text-4xl"></i>
-                </div>
-                <h2 class="text-xl font-bold text-gray-800">John Doe</h2>
-                <p class="text-gray-600">Senior Developer</p>
-                <p class="text-sm text-gray-500">EMP ID: DEV-007</p>
-            </div>
-        </div>
-
-        <!-- Company & Employee Details -->
-        <div class="grid grid-cols-2 gap-8 mb-8">
-            <div>
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 border-b pb-1">Company Details</h3>
-                <p class="font-medium">Tech Solutions Inc.</p>
-                <p class="text-sm text-gray-600">123 Business Park, Nairobi</p>
-                <p class="text-sm text-gray-600">Kenya</p>
-                <p class="text-sm text-gray-600">Tax ID: P0512345678</p>
-            </div>
-
-            <div>
-                <h3 class="text-lg font-semibold text-gray-800 mb-2 border-b pb-1">Employee Details</h3>
-                <p class="font-medium">John Doe</p>
-                <p class="text-sm text-gray-600">123 Employee Street</p>
-                <p class="text-sm text-gray-600">Nairobi, Kenya</p>
-                <p class="text-sm text-gray-600">NSSF No: 12345678</p>
-                <p class="text-sm text-gray-600">NHIF No: 98765432</p>
-                <p class="text-sm text-gray-600">KRA PIN: A012345678X</p>
-            </div>
-        </div>
-
-        <!-- Earnings & Deductions -->
-        <div class="grid grid-cols-2 gap-8 mb-8">
-            <!-- Earnings -->
-            <div>
-                <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b pb-1">Earnings</h3>
-                <table class="w-full">
-                    <thead>
-                        <tr class="text-left text-sm text-gray-500 border-b">
-                            <th class="pb-2">Description</th>
-                            <th class="text-right pb-2">Amount (ZAR)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-2">Basic Salary</td>
-                            <td class="text-right py-2 font-mono">120,000.00</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-2">House Allowance</td>
-                            <td class="text-right py-2 font-mono">25,000.00</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-2">Transport Allowance</td>
-                            <td class="text-right py-2 font-mono">15,000.00</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-2">Bonus</td>
-                            <td class="text-right py-2 font-mono">10,000.00</td>
-                        </tr>
-                        <tr class="bg-blue-50 font-semibold">
-                            <td class="py-2">Total Earnings</td>
-                            <td class="text-right py-2 font-mono">170,000.00</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Deductions -->
-            <div>
-                <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b pb-1">Deductions</h3>
-                <table class="w-full">
-                    <thead>
-                        <tr class="text-left text-sm text-gray-500 border-b">
-                            <th class="pb-2">Description</th>
-                            <th class="text-right pb-2">Amount (ZAR)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-2">PAYE</td>
-                            <td class="text-right py-2 font-mono text-red-600">27,500.00</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-2">NSSF</td>
-                            <td class="text-right py-2 font-mono text-red-600">1,080.00</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-2">NHIF</td>
-                            <td class="text-right py-2 font-mono text-red-600">1,700.00</td>
-                        </tr>
-                        <tr class="border-b border-gray-100">
-                            <td class="py-2">Pension</td>
-                            <td class="text-right py-2 font-mono text-red-600">12,000.00</td>
-                        </tr>
-                        <tr class="bg-red-50 font-semibold">
-                            <td class="py-2">Total Deductions</td>
-                            <td class="text-right py-2 font-mono text-red-600">42,280.00</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Summary -->
-        <div class="mb-8">
-            <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b pb-1">Summary</h3>
-            <div class="grid grid-cols-3 gap-4">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <p class="text-sm text-gray-600">Gross Pay</p>
-                    <p class="text-xl font-bold text-gray-800 font-mono">170,000.00</p>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <p class="text-sm text-gray-600">Total Deductions</p>
-                    <p class="text-xl font-bold text-red-600 font-mono">42,280.00</p>
-                </div>
-                <div class="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
-                    <p class="text-sm text-blue-600">Net Pay</p>
-                    <p class="text-2xl font-bold text-blue-700 font-mono">127,720.00</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Payment Details -->
-        <div class="mb-8">
-            <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b pb-1">Payment Details</h3>
-            <div class="grid grid-cols-2 gap-4">
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <p class="text-sm text-gray-600">Payment Method</p>
-                    <p class="font-medium">Bank Transfer</p>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <p class="text-sm text-gray-600">Bank Name</p>
-                    <p class="font-medium">Equity Bank</p>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <p class="text-sm text-gray-600">Account Number</p>
-                    <p class="font-medium">1234567890</p>
-                </div>
-                <div class="bg-gray-50 p-4 rounded-lg">
-                    <p class="text-sm text-gray-600">Payment Date</p>
-                    <p class="font-medium">25th June 2023</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="border-t pt-6 text-center text-sm text-gray-500">
-            <div class="flex justify-between mb-4">
-                <div class="text-left">
-                    <p class="font-medium">Employee Signature</p>
-                    <div class="h-12 border-b border-gray-300 mt-2"></div>
-                </div>
-                <div class="text-right">
-                    <p class="font-medium">Authorized Signature</p>
-                    <div class="h-12 border-b border-gray-300 mt-2"></div>
-                </div>
-            </div>
-            <p>This is a computer generated document. No signature is required.</p>
-            <p class="mt-2">For any queries, please contact HR at hr@techsolutions.com or call +254 700 123456</p>
+<body class="{{ $darkMode ?? '' }}">
+    <!-- Header -->
+    <div class="header-section">
+        <h1>Payslip</h1>
+        <p>Generated on: {{ date('F d, Y') }}</p>
+        <div class="mt-4">
+            <h2>Company Name</h2>
+            <p>123 Business Street, City, Country</p>
+            <p>Email: info@company.com | Phone: +1-234-567-890</p>
         </div>
     </div>
 
-    <script>
-        // You can add dynamic data population here if needed
-        document.addEventListener('DOMContentLoaded', function () {
-            // Example of setting dynamic data
-            // document.querySelector('.employee-name').textContent = employeeData.name;
-            // document.querySelector('.employee-id').textContent = employeeData.id;
-        });
-    </script>
+    <!-- Employee Details -->
+    <div class="employee-details">
+        <h3>Employee Information</h3>
+        <div class="mt-2">
+            <div><span>Employee Name:</span> John Doe</div>
+            <div><span>Employee ID:</span> EMP12345</div>
+            <div><span>Department:</span> Engineering</div>
+            <div><span>Designation:</span> Software Engineer</div>
+            <div><span>Pay Period:</span> June 2025</div>
+        </div>
+    </div>
+
+    <!-- Earnings and Deductions -->
+    <div class="earnings-deductions">
+        <h3>Earnings & Deductions</h3>
+        <table class="table-custom">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount (ZAR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Basic Salary</td>
+                    <td>15,000.00</td>
+                </tr>
+                <tr>
+                    <td>Overtime</td>
+                    <td>1,500.00</td>
+                </tr>
+                <tr>
+                    <td>Bonus</td>
+                    <td>500.00</td>
+                </tr>
+                <tr>
+                    <td>Total Earnings</td>
+                    <td>17,000.00</td>
+                </tr>
+                <tr>
+                    <td>NSSF</td>
+                    <td>-850.00</td>
+                </tr>
+                <tr>
+                    <td>SHIF</td>
+                    <td>-300.00</td>
+                </tr>
+                <tr>
+                    <td>PAYE</td>
+                    <td>-1,200.00</td>
+                </tr>
+                <tr>
+                    <td>Total Deductions</td>
+                    <td>-2,350.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Net Pay -->
+    <div class="net-pay">
+        <h3>Net Pay</h3>
+        <p>ZAR 14,650.00</p>
+    </div>
+
+    <!-- Signature -->
+    <div class="signature">
+        <p>Authorized by: ___________________________</p>
+        <p>Date: {{ date('F d, Y') }}</p>
+    </div>
 </body>
 
 </html>
