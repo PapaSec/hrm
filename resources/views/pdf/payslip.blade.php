@@ -259,24 +259,32 @@
                     <td>500.00</td>
                 </tr>
                 <tr>
-                    <td>Total Earnings</td>
-                    <td>17,000.00</td>
-                </tr>
-                <tr>
                     <td>NSSF</td>
                     <td>-850.00</td>
                 </tr>
                 <tr>
                     <td>SHIF</td>
-                    <td>-300.00</td>
+                    <td>{{ number_format($salary->breakdown->getNssfDeduction)}}</td>
+                </tr>
+                <tr>
+                    <td>SHIF</td>
+                    <td>{{ number_format($salary->getShifDeduction)}}</td>
+                </tr>
+                <tr>
+                    <td>AHL</td>
+                    <td>{{ number_format($salary->getAhlDeduction)}}</td>
                 </tr>
                 <tr>
                     <td>PAYE</td>
-                    <td>-1,200.00</td>
+                    <td> {{ number_format($salary->getPaye)}}</td>
                 </tr>
                 <tr>
                     <td>Total Deductions</td>
                     <td>-2,350.00</td>
+                </tr>
+                <tr>
+                    <td>Total Earnings</td>
+                    <td>17,000.00</td>
                 </tr>
             </tbody>
         </table>
