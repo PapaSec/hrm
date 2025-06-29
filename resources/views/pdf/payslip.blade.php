@@ -251,40 +251,24 @@
                     <td><sup>ZAR</sup>{{ number_format($salary->gross_salary)}}</td>
                 </tr>
                 <tr>
-                    <td>Overtime</td>
-                    <td>1,500.00</td>
-                </tr>
-                <tr>
-                    <td>Bonus</td>
-                    <td>500.00</td>
-                </tr>
-                <tr>
                     <td>NSSF</td>
-                    <td>-850.00</td>
+                    <td><sup>ZAR</sup>{{ number_format($salary->breakdown->getNssfDeduction())}}</td>
                 </tr>
                 <tr>
                     <td>SHIF</td>
-                    <td>{{ number_format($salary->breakdown->getNssfDeduction)}}</td>
-                </tr>
-                <tr>
-                    <td>SHIF</td>
-                    <td>{{ number_format($salary->getShifDeduction)}}</td>
+                    <td><sup>ZAR</sup>{{ number_format($salary->breakdown->getShifDeduction())}}</td>
                 </tr>
                 <tr>
                     <td>AHL</td>
-                    <td>{{ number_format($salary->getAhlDeduction)}}</td>
+                    <td><sup>ZAR</sup>{{ number_format($salary->breakdown->getAhlDeduction())}}</td>
                 </tr>
                 <tr>
                     <td>PAYE</td>
-                    <td> {{ number_format($salary->getPaye)}}</td>
+                    <td><sup>ZAR</sup>{{ number_format($salary->breakdown->getPaye())}}</td>
                 </tr>
                 <tr>
-                    <td>Total Deductions</td>
-                    <td>-2,350.00</td>
-                </tr>
-                <tr>
-                    <td>Total Earnings</td>
-                    <td>17,000.00</td>
+                    <td>Total</td>
+                    <td><sup>ZAR</sup>{{ number_format($salary->breakdown->getDeduction())}}</td>
                 </tr>
             </tbody>
         </table>
@@ -293,13 +277,7 @@
     <!-- Net Pay -->
     <div class="net-pay">
         <h3>Net Pay</h3>
-        <p>ZAR 14,650.00</p>
-    </div>
-
-    <!-- Signature -->
-    <div class="signature">
-        <p>Authorized by: ___________________________</p>
-        <p>Date: {{ date('F d, Y') }}</p>
+        <p><sup>Net Pay:</sup>{{ number_format($salary->breakdown->getNetPay())}}</p>
     </div>
 </body>
 
