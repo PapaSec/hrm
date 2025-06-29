@@ -70,39 +70,39 @@
                 <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                     wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
             </flux:navlist.group>
-            @if (session()->has('company_id'))
 
-                <!-- Companies -->
-                <flux:navlist.group class="grid mb-1"
-                    x-data="{ open: {{ request()->routeIs(['companies.index', 'companies.create']) ? 'true' : 'false' }} }">
-                    <flux:navlist.item as="button" :current="request()->routeIs(['companies.index', 'companies.create'])"
-                        @click="open = !open">
-                        <span class="flex items-center justify-between w-full">
-                            <span class="flex items-center">
-                                <flux:icon name="rectangle-group" class="mr-2" />
-                                {{ __('Companies') }}
-                            </span>
-                            <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                                </path>
-                            </svg>
-                            <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                                </path>
-                            </svg>
+            <!-- Companies -->
+            <flux:navlist.group class="grid mb-1"
+                x-data="{ open: {{ request()->routeIs(['companies.index', 'companies.create']) ? 'true' : 'false' }} }">
+                <flux:navlist.item as="button" :current="request()->routeIs(['companies.index', 'companies.create'])"
+                    @click="open = !open">
+                    <span class="flex items-center justify-between w-full">
+                        <span class="flex items-center">
+                            <flux:icon name="rectangle-group" class="mr-2" />
+                            {{ __('Companies') }}
                         </span>
+                        <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                        <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </span>
+                </flux:navlist.item>
+                <div x-show="open" x-transition class="ml-6 space-y-1">
+                    <flux:navlist.item icon="list-bullet" :href="route('companies.index')" class="hover:bg-transparent"
+                        :class="request()->routeIs('companies.index') ? 'text-blue-600' : ''" wire:navigate>
+                        {{ __('List of Companies') }}
                     </flux:navlist.item>
-                    <div x-show="open" x-transition class="ml-6 space-y-1">
-                        <flux:navlist.item icon="list-bullet" :href="route('companies.index')" class="hover:bg-transparent"
-                            :class="request()->routeIs('companies.index') ? 'text-blue-600' : ''" wire:navigate>
-                            {{ __('List of Companies') }}
-                        </flux:navlist.item>
-                        <flux:navlist.item icon="plus" :href="route('companies.create')" class="hover:bg-transparent"
-                            :class="request()->routeIs('companies.create') ? 'text-blue-600' : ''" wire:navigate>
-                            {{ __('Add Company') }}
-                        </flux:navlist.item>
-                    </div>
-                </flux:navlist.group>
+                    <flux:navlist.item icon="plus" :href="route('companies.create')" class="hover:bg-transparent"
+                        :class="request()->routeIs('companies.create') ? 'text-blue-600' : ''" wire:navigate>
+                        {{ __('Add Company') }}
+                    </flux:navlist.item>
+                </div>
+            </flux:navlist.group>
+            @if (session()->has('company_id'))
 
                 <!-- Departments -->
                 <flux:navlist.group class="grid mb-1"
