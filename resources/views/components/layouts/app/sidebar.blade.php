@@ -70,200 +70,201 @@
                 <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                     wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
             </flux:navlist.group>
+            @if (session()->has('company_id'))
 
-            <!-- Companies -->
-            <flux:navlist.group class="grid mb-1"
-                x-data="{ open: {{ request()->routeIs(['companies.index', 'companies.create']) ? 'true' : 'false' }} }">
-                <flux:navlist.item as="button" :current="request()->routeIs(['companies.index', 'companies.create'])"
-                    @click="open = !open">
-                    <span class="flex items-center justify-between w-full">
-                        <span class="flex items-center">
-                            <flux:icon name="rectangle-group" class="mr-2" />
-                            {{ __('Companies') }}
+                <!-- Companies -->
+                <flux:navlist.group class="grid mb-1"
+                    x-data="{ open: {{ request()->routeIs(['companies.index', 'companies.create']) ? 'true' : 'false' }} }">
+                    <flux:navlist.item as="button" :current="request()->routeIs(['companies.index', 'companies.create'])"
+                        @click="open = !open">
+                        <span class="flex items-center justify-between w-full">
+                            <span class="flex items-center">
+                                <flux:icon name="rectangle-group" class="mr-2" />
+                                {{ __('Companies') }}
+                            </span>
+                            <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                            <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
                         </span>
-                        <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                        <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </span>
-                </flux:navlist.item>
-                <div x-show="open" x-transition class="ml-6 space-y-1">
-                    <flux:navlist.item icon="list-bullet" :href="route('companies.index')" class="hover:bg-transparent"
-                        :class="request()->routeIs('companies.index') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('List of Companies') }}
                     </flux:navlist.item>
-                    <flux:navlist.item icon="plus" :href="route('companies.create')" class="hover:bg-transparent"
-                        :class="request()->routeIs('companies.create') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('Add Company') }}
-                    </flux:navlist.item>
-                </div>
-            </flux:navlist.group>
+                    <div x-show="open" x-transition class="ml-6 space-y-1">
+                        <flux:navlist.item icon="list-bullet" :href="route('companies.index')" class="hover:bg-transparent"
+                            :class="request()->routeIs('companies.index') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('List of Companies') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item icon="plus" :href="route('companies.create')" class="hover:bg-transparent"
+                            :class="request()->routeIs('companies.create') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('Add Company') }}
+                        </flux:navlist.item>
+                    </div>
+                </flux:navlist.group>
 
-            <!-- Departments -->
-            <flux:navlist.group class="grid mb-1"
-                x-data="{ open: {{ request()->routeIs(['departments.index', 'departments.create']) ? 'true' : 'false' }} }">
-                <flux:navlist.item as="button"
-                    :current="request()->routeIs(['departments.index', 'departments.create'])" @click="open = !open">
-                    <span class="flex items-center justify-between w-full">
-                        <span class="flex items-center">
-                            <flux:icon name="building-office-2" class="mr-2" />
-                            {{ __('Departments') }}
+                <!-- Departments -->
+                <flux:navlist.group class="grid mb-1"
+                    x-data="{ open: {{ request()->routeIs(['departments.index', 'departments.create']) ? 'true' : 'false' }} }">
+                    <flux:navlist.item as="button"
+                        :current="request()->routeIs(['departments.index', 'departments.create'])" @click="open = !open">
+                        <span class="flex items-center justify-between w-full">
+                            <span class="flex items-center">
+                                <flux:icon name="building-office-2" class="mr-2" />
+                                {{ __('Departments') }}
+                            </span>
+                            <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                            <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
                         </span>
-                        <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                        <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </span>
-                </flux:navlist.item>
-                <div x-show="open" x-transition class="ml-6 space-y-1">
-                    <flux:navlist.item icon="list-bullet" :href="route('departments.index')"
-                        class="hover:bg-transparent"
-                        :class="request()->routeIs('departments.index') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('List of Departments') }}
                     </flux:navlist.item>
-                    <flux:navlist.item icon="plus" :href="route('departments.create')" class="hover:bg-transparent"
-                        :class="request()->routeIs('departments.create') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('Add Department') }}
-                    </flux:navlist.item>
-                </div>
-            </flux:navlist.group>
+                    <div x-show="open" x-transition class="ml-6 space-y-1">
+                        <flux:navlist.item icon="list-bullet" :href="route('departments.index')"
+                            class="hover:bg-transparent"
+                            :class="request()->routeIs('departments.index') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('List of Departments') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item icon="plus" :href="route('departments.create')" class="hover:bg-transparent"
+                            :class="request()->routeIs('departments.create') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('Add Department') }}
+                        </flux:navlist.item>
+                    </div>
+                </flux:navlist.group>
 
-            <!-- Designations -->
-            <flux:navlist.group class="grid mb-1"
-                x-data="{ open: {{ request()->routeIs(['designations.index', 'designations.create']) ? 'true' : 'false' }} }">
-                <flux:navlist.item as="button"
-                    :current="request()->routeIs(['designations.index', 'designations.create'])" @click="open = !open">
-                    <span class="flex items-center justify-between w-full">
-                        <span class="flex items-center">
-                            <flux:icon name="briefcase" class="mr-2" />
-                            {{ __('Designations') }}
+                <!-- Designations -->
+                <flux:navlist.group class="grid mb-1"
+                    x-data="{ open: {{ request()->routeIs(['designations.index', 'designations.create']) ? 'true' : 'false' }} }">
+                    <flux:navlist.item as="button"
+                        :current="request()->routeIs(['designations.index', 'designations.create'])" @click="open = !open">
+                        <span class="flex items-center justify-between w-full">
+                            <span class="flex items-center">
+                                <flux:icon name="briefcase" class="mr-2" />
+                                {{ __('Designations') }}
+                            </span>
+                            <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                            <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
                         </span>
-                        <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                        <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </span>
-                </flux:navlist.item>
-                <div x-show="open" x-transition class="ml-6 space-y-1">
-                    <flux:navlist.item icon="list-bullet" :href="route('designations.index')"
-                        class="hover:bg-transparent"
-                        :class="request()->routeIs('designations.index') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('List of Designations') }}
                     </flux:navlist.item>
-                    <flux:navlist.item icon="plus" :href="route('designations.create')" class="hover:bg-transparent"
-                        :class="request()->routeIs('designations.create') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('Add Designation') }}
-                    </flux:navlist.item>
-                </div>
-            </flux:navlist.group>
+                    <div x-show="open" x-transition class="ml-6 space-y-1">
+                        <flux:navlist.item icon="list-bullet" :href="route('designations.index')"
+                            class="hover:bg-transparent"
+                            :class="request()->routeIs('designations.index') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('List of Designations') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item icon="plus" :href="route('designations.create')" class="hover:bg-transparent"
+                            :class="request()->routeIs('designations.create') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('Add Designation') }}
+                        </flux:navlist.item>
+                    </div>
+                </flux:navlist.group>
 
-            <!-- Employees -->
-            <flux:navlist.group class="grid mb-1"
-                x-data="{ open: {{ request()->routeIs(['employees.index', 'employees.create']) ? 'true' : 'false' }} }">
-                <flux:navlist.item as="button" :current="request()->routeIs(['employees.index', 'employees.create'])"
-                    @click="open = !open">
-                    <span class="flex items-center justify-between w-full">
-                        <span class="flex items-center">
-                            <flux:icon name="users" class="mr-2" />
-                            {{ __('Employees') }}
+                <!-- Employees -->
+                <flux:navlist.group class="grid mb-1"
+                    x-data="{ open: {{ request()->routeIs(['employees.index', 'employees.create']) ? 'true' : 'false' }} }">
+                    <flux:navlist.item as="button" :current="request()->routeIs(['employees.index', 'employees.create'])"
+                        @click="open = !open">
+                        <span class="flex items-center justify-between w-full">
+                            <span class="flex items-center">
+                                <flux:icon name="users" class="mr-2" />
+                                {{ __('Employees') }}
+                            </span>
+                            <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                            <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
                         </span>
-                        <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                        <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </span>
-                </flux:navlist.item>
-                <div x-show="open" x-transition class="ml-6 space-y-1">
-                    <flux:navlist.item icon="list-bullet" :href="route('employees.index')" class="hover:bg-transparent"
-                        :class="request()->routeIs('employees.index') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('List of Employees') }}
                     </flux:navlist.item>
-                    <flux:navlist.item icon="plus" :href="route('employees.create')" class="hover:bg-transparent"
-                        :class="request()->routeIs('employees.create') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('Add Employee') }}
-                    </flux:navlist.item>
-                </div>
-            </flux:navlist.group>
+                    <div x-show="open" x-transition class="ml-6 space-y-1">
+                        <flux:navlist.item icon="list-bullet" :href="route('employees.index')" class="hover:bg-transparent"
+                            :class="request()->routeIs('employees.index') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('List of Employees') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item icon="plus" :href="route('employees.create')" class="hover:bg-transparent"
+                            :class="request()->routeIs('employees.create') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('Add Employee') }}
+                        </flux:navlist.item>
+                    </div>
+                </flux:navlist.group>
 
-            <!-- Contracts -->
-            <flux:navlist.group class="grid mb-1"
-                x-data="{ open: {{ request()->routeIs(['contracts.index', 'contracts.create']) ? 'true' : 'false' }} }">
-                <flux:navlist.item as="button" :current="request()->routeIs(['contracts.index', 'contracts.create'])"
-                    @click="open = !open">
-                    <span class="flex items-center justify-between w-full">
-                        <span class="flex items-center">
-                            <flux:icon name="document-text" class="mr-2" />
-                            {{ __('Contracts') }}
+                <!-- Contracts -->
+                <flux:navlist.group class="grid mb-1"
+                    x-data="{ open: {{ request()->routeIs(['contracts.index', 'contracts.create']) ? 'true' : 'false' }} }">
+                    <flux:navlist.item as="button" :current="request()->routeIs(['contracts.index', 'contracts.create'])"
+                        @click="open = !open">
+                        <span class="flex items-center justify-between w-full">
+                            <span class="flex items-center">
+                                <flux:icon name="document-text" class="mr-2" />
+                                {{ __('Contracts') }}
+                            </span>
+                            <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                            <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
                         </span>
-                        <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                        <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </span>
-                </flux:navlist.item>
-                <div x-show="open" x-transition class="ml-6 space-y-1">
-                    <flux:navlist.item icon="list-bullet" :href="route('contracts.index')" class="hover:bg-transparent"
-                        :class="request()->routeIs('contracts.index') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('List of Contracts') }}
                     </flux:navlist.item>
-                    <flux:navlist.item icon="plus" :href="route('contracts.create')" class="hover:bg-transparent"
-                        :class="request()->routeIs('contracts.create') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('Add Contract') }}
-                    </flux:navlist.item>
-                </div>
-            </flux:navlist.group>
+                    <div x-show="open" x-transition class="ml-6 space-y-1">
+                        <flux:navlist.item icon="list-bullet" :href="route('contracts.index')" class="hover:bg-transparent"
+                            :class="request()->routeIs('contracts.index') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('List of Contracts') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item icon="plus" :href="route('contracts.create')" class="hover:bg-transparent"
+                            :class="request()->routeIs('contracts.create') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('Add Contract') }}
+                        </flux:navlist.item>
+                    </div>
+                </flux:navlist.group>
 
-            <!-- Payroll -->
-            <flux:navlist.group class="grid mb-1"
-                x-data="{ open: {{ request()->routeIs('payrolls.index') ? 'true' : 'false' }} }">
-                <flux:navlist.item as="button" :current="request()->routeIs('payrolls.index')" @click="open = !open">
-                    <span class="flex items-center justify-between w-full">
-                        <span class="flex items-center">
-                            <flux:icon name="calculator" class="mr-2" />
-                            {{ __('Accounting') }}
+                <!-- Payroll -->
+                <flux:navlist.group class="grid mb-1"
+                    x-data="{ open: {{ request()->routeIs('payrolls.index') ? 'true' : 'false' }} }">
+                    <flux:navlist.item as="button" :current="request()->routeIs('payrolls.index')" @click="open = !open">
+                        <span class="flex items-center justify-between w-full">
+                            <span class="flex items-center">
+                                <flux:icon name="calculator" class="mr-2" />
+                                {{ __('Accounting') }}
+                            </span>
+                            <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                            <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
                         </span>
-                        <svg x-show="!open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                        <svg x-show="open" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </span>
-                </flux:navlist.item>
-                <div x-show="open" x-transition class="ml-6 space-y-1">
-                    <flux:navlist.item icon="eye" :href="route('payrolls.index')" class="hover:bg-transparent"
-                        :class="request()->routeIs('payroll.show') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('Show Payroll') }}
                     </flux:navlist.item>
-                    <flux:navlist.item icon="credit-card" :href="route('payments.index')" class="hover:bg-transparent"
-                        :class="request()->routeIs('payments.show') ? 'text-blue-600' : ''" wire:navigate>
-                        {{ __('Payroll Payments') }}
-                    </flux:navlist.item>
-                </div>
-            </flux:navlist.group>
-
+                    <div x-show="open" x-transition class="ml-6 space-y-1">
+                        <flux:navlist.item icon="eye" :href="route('payrolls.index')" class="hover:bg-transparent"
+                            :class="request()->routeIs('payroll.show') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('Show Payroll') }}
+                        </flux:navlist.item>
+                        <flux:navlist.item icon="credit-card" :href="route('payments.index')" class="hover:bg-transparent"
+                            :class="request()->routeIs('payments.show') ? 'text-blue-600' : ''" wire:navigate>
+                            {{ __('Payroll Payments') }}
+                        </flux:navlist.item>
+                    </div>
+                </flux:navlist.group>
+            @endif
             <p class="text-red-500">{{ session('message') }}</p>
         </flux:navlist>
 

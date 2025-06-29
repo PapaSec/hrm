@@ -132,6 +132,7 @@
             font-weight: 500;
             color: #374151;
             margin-bottom: 8px;
+            text-align: right;
         }
 
         .net-pay p {
@@ -230,7 +231,6 @@
         <div class="mt-2">
             <div><span>Employee Name:</span>{{ $salary->employee->name }}</div>
             <div><span>Employee ID:</span>{{ sprintf('%04d', $salary->employee_id) }}</div>
-            <div><span>Department:</span>{{ $salary->employee->department }}</div>
             <div><span>Designation:</span>{{ $salary->employee->designation->name }}</div>
         </div>
     </div>
@@ -277,7 +277,7 @@
     <!-- Net Pay -->
     <div class="net-pay">
         <h3>Net Pay</h3>
-        <p><sup>Net Pay:</sup>{{ number_format($salary->breakdown->getNetPay())}}</p>
+        <p><sup>Net Pay: R</sup>{{ number_format($salary->breakdown->getNetPay())}}</p>
     </div>
 </body>
 
